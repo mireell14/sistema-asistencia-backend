@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tipo_trabajadores', function (Blueprint $table) {
-            // Clave primaria autoincremental
+           
             $table->increments('id_tipo');
 
-            // Atributos principales
-            $table->string('nombre_tipo', 50);      // Ejemplo: "Administrativo", "Docente", "Técnico"
-            $table->string('descripcion', 100);     // Breve descripción del tipo de trabajador
+            
+            $table->string('nombre_tipo', 50);     
+            $table->string('descripcion', 100);    
 
-            // Campos automáticos
+           
             $table->timestamps();
         });
     }

@@ -12,21 +12,18 @@ return new class extends Migration
             // PK autoincremental con nombre personalizado
             $table->increments('id_estudiante');
 
-            // Campos solicitados
-            $table->string('dni', 8)->unique();           // varchar(8)
-            $table->string('nombres', 100);               // varchar(100)
-            $table->string('apellidos', 100);             // varchar(100)
-            $table->date('fecha_nacimiento');             // date
-            $table->string('genero', 10);                 // varchar(10)
-            $table->string('direccion', 150)->nullable(); // varchar(150)
-            $table->string('telefono', 20)->nullable();   // varchar(20)
-            $table->string('estado', 20)->default('activo'); // varchar(20)
-
-            // Clave foránea: referencia corregida a grados.id_grado
-            $table->unsignedInteger('id_grado');
-            $table->foreign('id_grado')
-                  ->references('id_grado')
-                  ->on('grados')
+            $table->string('dni', 8)->unique();          
+            $table->string('nombres', 100);              
+            $table->string('apellidos', 100);             
+            $table->date('fecha_nacimiento');            
+            $table->string('genero', 10);                 
+            $table->string('direccion', 150)->nullable(); 
+            $table->string('telefono', 20)->nullable();   
+            $table->string('estado', 20)->default('activo'); 
+            $table->unsignedInteger('id_seccion');
+            $table->foreign('id_seccion')
+                  ->references('id_seccion')
+                  ->on('secciones')
                   ->cascadeOnUpdate()
                   ->restrictOnDelete();
 
@@ -38,7 +35,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('students', function (Blueprint $table) {
-            // soltar la FK primero para evitar errores en algunos motores
+           
             $table->dropForeign(['id_grado']);
         });
 

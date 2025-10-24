@@ -22,10 +22,10 @@ return new class extends Migration
 
             
             $table->string('nombre_seccion', 10); 
-            $table->integer('capacidad');         // Número máximo de alumnos
-            $table->integer('anio_lectivo');      // Ejemplo: 2025
+            $table->integer('capacidad');        
+            $table->integer('anio_lectivo');     
 
-            // Campos automáticos de Laravel
+        
             $table->timestamps();
         });
     }
