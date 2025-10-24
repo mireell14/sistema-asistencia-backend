@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('direccion', 150)->nullable(); 
             $table->string('telefono', 20)->nullable();   
             $table->string('estado', 20)->default('activo'); 
-            $table->unsignedInteger('id_seccion');
-            $table->foreign('id_seccion')
-                  ->references('id_seccion')
-                  ->on('secciones')
+            $table->unsignedInteger('id_grado');
+            $table->foreign('id_grado')
+                  ->references('id_grado')
+                  ->on('grados')
                   ->cascadeOnUpdate()
                   ->restrictOnDelete();
 
