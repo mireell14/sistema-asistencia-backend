@@ -17,7 +17,15 @@ class GradoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre_grado' => $this->faker->randomElement([
+                'Primer Grado',
+                'Segundo Grado',
+                'Tercer Grado',
+                'Cuarto Grado',
+                'Quinto Grado',
+                'Sexto Grado'
+            ]),
+            'nivel' => $this->faker->randomElement(['Primaria', 'Secundaria']),
         ];
     }
 }
