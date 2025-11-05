@@ -17,7 +17,9 @@ class Tipo_trabajadorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre_tipo' => $this->faker->randomElement(['administrativo', 'docente', 'personal de limpieza']),
+            'descripcion' => $this->faker->sentence(),
+            
         ];
     }
 }
