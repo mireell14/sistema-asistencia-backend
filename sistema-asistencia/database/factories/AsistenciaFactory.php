@@ -17,7 +17,15 @@ class AsistenciaFactory extends Factory
     public function definition(): array
     {
         return [
+            'fecha' => $this->faker->date(),
+            'hora_entrada' => $this->faker->time(),
+            'hora_salida' => $this->faker->time(),
+            'estado' => $this->faker->randomElement(['presente', 'ausente', 'tarde']),
+            'observacion' => $this->faker->sentence(),
+            'id_student' => \App\Models\Student::factory(),
+            'id_trabajador' => \App\Models\Trabajador::factory(),                   
             //
+        
         ];
     }
 }

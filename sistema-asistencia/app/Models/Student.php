@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['nombre', 'apellido', 'direccion', 'telefono', 'estado', 'id_seccion'];
-    public function seccion()
+    protected $fillable = ['dni','nombres', 'apellidos', 'fecha_nacimiento','genero', 'direccion','telefono', 'estado', 'id_seccion'];
+    public function grado()
     {
-        return $this->belongsTo(Seccion::class, 'id_seccion');
+        return $this->belongsTo(Grado::class, 'id_grado');
     }
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;

@@ -17,7 +17,16 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'dni' => $this->faker->unique()->numerify('########'),
+            'nombres' => $this->faker->firstName(),
+            'apellidos' => $this->faker->lastName(),
+            'fecha_nacimiento' => $this->faker->date(),
+            'genero' => $this->faker->randomElement(['masculino', 'femenino', 'otro']),
+            'direccion' => $this->faker->address(),
+            'telefono' => $this->faker->phoneNumber(),
+            'estado' => $this->faker->randomElement(['activo', 'inactivo']),
+            'id_grado' => \App\Models\Grado::factory(),
+            
         ];
     }
 }
