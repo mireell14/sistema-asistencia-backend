@@ -8,16 +8,14 @@ use App\Models\Asistencia;
 
 class Asistencia extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $Asistencia = Asistencia::all();
         return response()->json($Asistencia);
     }
 
-   
+
     public function store(AsistenciaRequest $request)
     {
     

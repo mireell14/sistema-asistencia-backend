@@ -20,27 +20,20 @@ class GradoController extends Controller
         return response()->json(['msg' => 'Registrado', 'data' => $med], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        return response()->json($Grado->load('grado'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $Grado=update($request->validated());
+        return response()->json(['msg' => 'Actualizado', 'data' => $Grado]);    
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $Grado->delete();
+        return response()->json(['msg' => 'Eliminado']);
     }
 }
