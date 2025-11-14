@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use App\Http\Requests\Asistencia; 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Asistencia;
 
 class Asistencia extends Controller
 {
@@ -12,38 +13,32 @@ class Asistencia extends Controller
      */
     public function index()
     {
-        //
+        $Asistencia = Asistencia::all();
+        return response()->json($Asistencia);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   
+    public function store(AsistenciaRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
+    
+        $med= Asistencia::create($request->validated()); 
+        return response()->json(['msg' => 'Registrado', 'data' => $med], 201);
+     }
+   
     public function show(string $id)
     {
-        //
+        return response()->json($Asistencia->load('asistencia'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $Asistencia=update($request->validated());
+        return response()->json(['msg' => 'Actualizado', 'data' => $Asistencia]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $Asistencia->delete();
+        return response()->json(['msg' => 'Eliminado']);
     }
 }
