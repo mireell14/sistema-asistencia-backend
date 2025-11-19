@@ -2,28 +2,24 @@
 
 namespace Database\Factories;
 
+use App\Models\Trabajador;
+use App\Models\TipoTrabajador;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Trabajador>
- */
 class TrabajadorFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Trabajador::class;
+
     public function definition(): array
     {
         return [
             'dni' => $this->faker->unique()->numerify('########'),
-            'nombres' => $this->faker->name(),
+            'nombres' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName(),
-            'cargo' => $this->faker->randomElement(['administrativo', 'docente', 'personal de limpieza']),
+            'cargo' => $this->faker->randomElement(['Docente', 'Administrador', 'Director']),
             'telefono' => $this->faker->phoneNumber(),
             'direccion' => $this->faker->address(),
-            'id_tipo_trabajador' => \App\Models\TipoTrabajador::factory(),
+            'id_tipo' => TipoTrabajador::inRandomOrder()->first()->id_tipo,
         ];
     }
 }

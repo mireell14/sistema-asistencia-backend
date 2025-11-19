@@ -3,36 +3,36 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Tipo_trabajadorRequest; 
+use App\Http\Requests\TipoTrabajadorRequest;
 use Illuminate\Http\Request;
-use App\Models\Tipo_trabajador;
+use App\Models\TipoTrabajador;
 
-class Tipo_trabajadorController extends Controller
+class TipoTrabajadorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tipos = Tipo_trabajador::all();
+        $tipos = TipoTrabajador::all();
         return response()->json($tipos);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Tipo_trabajadorRequest $request)
+    public function store(TipoTrabajadorRequest $request)
     {
-        $tipo = Tipo_trabajador::create($request->validated()); 
+        $tipo = TipoTrabajador::create($request->validated());
         return response()->json(['msg' => 'Registrado', 'data' => $tipo], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tipo_trabajador $tipo)
+    public function show(TipoTrabajador $tipo)
     {
-        return response()->json($tipo->load('tipo_trabajadores')); 
+        return response()->json($tipo->load('tipoTrabajadores'));
     }
 
     /**

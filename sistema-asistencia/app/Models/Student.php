@@ -7,11 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['dni','nombres', 'apellidos', 'fecha_nacimiento','genero', 'direccion','telefono', 'estado', 'id_seccion'];
+    use HasFactory;
+
+    protected $primaryKey = 'id_estudiante';
+
+    protected $fillable = [
+        'dni',
+        'nombres',
+        'apellidos',
+        'fecha_nacimiento',
+        'genero',
+        'direccion',
+        'telefono',
+        'estado',
+        'id_grado'
+    ];
+
     public function grado()
     {
         return $this->belongsTo(Grado::class, 'id_grado');
     }
-    /** @use HasFactory<\Database\Factories\StudentFactory> */
-    use HasFactory;
 }

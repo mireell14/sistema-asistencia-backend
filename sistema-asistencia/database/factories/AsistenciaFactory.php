@@ -2,30 +2,25 @@
 
 namespace Database\Factories;
 
+use App\Models\Asistencia;
+use App\Models\Student;
+use App\Models\Trabajador;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Asistencia>
- */
 class AsistenciaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Asistencia::class;
+
     public function definition(): array
     {
         return [
-            'fecha' => $this->faker->date(),
+            'id_estudiante' => Student::factory(),
+            'id_trabajador' => Trabajador::factory(),
+            'fecha' => now(),
             'hora_entrada' => $this->faker->time(),
-            'hora_salida' => $this->faker->time(),
-            'estado' => $this->faker->randomElement(['presente', 'ausente', 'tarde']),
+            'hora_salida' => null,
+            'estado' => $this->faker->randomElement(['asistió', 'tardanza', 'faltó']),
             'observacion' => $this->faker->sentence(),
-            'id_student' => \App\Models\Student::factory(),
-            'id_trabajador' => \App\Models\Trabajador::factory(),                   
-            //
-        
         ];
     }
 }

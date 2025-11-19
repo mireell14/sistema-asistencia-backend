@@ -1,26 +1,30 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentRequest;
 use Illuminate\Http\Request;
+use App\Models\Student;
 
-class Asistencia extends Controller
+
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $students=Student::all();
+        return response()->json($students);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        $student = Student::create($request->validated());
+        return response()->json(['msg' => 'Registrado', 'data' => $student], 201);
     }
 
     /**
@@ -34,9 +38,10 @@ class Asistencia extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update( StudentRequest $request,Student $student)
     {
-        //
+        $student->update($request->validated());
+        return response()->json(['msg' => 'Actualizado', 'data' => $student]);
     }
 
     /**
