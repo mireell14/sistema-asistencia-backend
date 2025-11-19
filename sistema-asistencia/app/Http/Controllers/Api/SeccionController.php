@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Seccion;
 
 class SeccionController extends Controller
 {
@@ -12,7 +13,8 @@ class SeccionController extends Controller
      */
     public function index()
     {
-        //
+        $seccions=Seccion::all();
+        return response()->json($seccions);
     }
 
     /**
@@ -20,7 +22,8 @@ class SeccionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $seccion= Seccion::create($request->validated());
+        return response()->json(['msg' => 'Registrado', 'data' => $seccion], 201);
     }
 
     /**
@@ -28,7 +31,8 @@ class SeccionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $Seccion=Seccion::findOrFail($id);
+        return response()->json($Seccion);
     }
 
     /**
@@ -36,7 +40,9 @@ class SeccionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $Seccion=Seccion::findOrFail($id);
+        $Seccion->update($request->all());
+        return response()->json(['msg' => 'Actualizado', 'data' => $Seccion]);
     }
 
     /**
@@ -44,6 +50,8 @@ class SeccionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $Seccion=Seccion::findOrFail($id);
+        $Seccion->delete();
+        return response()->json(['msg' => 'Eliminado']);
     }
 }

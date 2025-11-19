@@ -14,7 +14,7 @@ class TipoTrabajadorController extends Controller
      */
     public function index()
     {
-        $tipos = TipoTrabajador::all();
+        $tipos=TipoTrabajador::all();
         return response()->json($tipos);
     }
 
@@ -32,7 +32,7 @@ class TipoTrabajadorController extends Controller
      */
     public function show(TipoTrabajador $tipo)
     {
-        return response()->json($tipo->load('tipoTrabajadores'));
+        return response()->json($tipo);
     }
 
     /**
@@ -40,7 +40,9 @@ class TipoTrabajadorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $TipoTrabajador=TipoTrabajador::findOrFail($id);
+        $TipoTrabajador->update($request->all());
+        return response()->json(['msg' => 'Actualizado', 'data' => $TipoTrabajador]);
     }
 
     /**
@@ -48,6 +50,8 @@ class TipoTrabajadorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $TipoTrabajador=TipoTrabajador::findOrFail($id);
+        $TipoTrabajador->delete();
+        return response()->json(['msg' => 'Eliminado']);
     }
 }
