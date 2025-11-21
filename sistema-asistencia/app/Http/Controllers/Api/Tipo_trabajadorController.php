@@ -32,6 +32,7 @@ class TipoTrabajadorController extends Controller
      */
     public function show(TipoTrabajador $tipo)
     {
+        $tipo=TipoTrabajador::findOrFail($tipo->id);
         return response()->json($tipo);
     }
 

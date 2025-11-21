@@ -1,39 +1,44 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Grado;
+
 class GradoController extends Controller
 {
     public function index()
     {
-        $grados=Grado::all();
+        $grados = Grado::all();
         return response()->json($grados);
     }
-public function store(Request $request)
+
+    public function store(Request $request)
     {
-        $med= Grado::create($request->validated());
-        return response()->json(['msg' => 'Registrado', 'data' => $med], 201);
+        $grado = Grado::create($request->all());
+        return response()->json([
+            'msg' => 'Registrado',
+            'data' => $grado
+        ], 201);
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        $Grado=Grado::findOrFail($id);
-        return response()->json($Grado->load('grado'));
+        return Grado::findOrFail($id);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $Grado=Grado::findOrFail($id);
-        $Grado->update($request->all());
-        return response()->json(['msg' => 'Actualizado', 'data' => $Grado]);
+        $grado = Grado::findOrFail($id);
+        $grado->update($request->all());
+        return response()->json(['msg' => 'Actualizado', 'data' => $grado]);
     }
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $Grado=Grado::findOrFail($id);
-        $Grado->delete();
+        $grado = Grado::findOrFail($id);
+        $grado->delete();
         return response()->json(['msg' => 'Eliminado']);
     }
 }
