@@ -28,6 +28,7 @@ class TrabajadoreRequest extends FormRequest
             'cargo'=>'required|string|max:50',
             'telefono'=>'required|string|max:20',
             'direccion'=>'required|string|max:150',
+            'id_tipo'   => 'required|integer|exists:tipo_trabajadores,id_tipo'
         ];
     }
 }

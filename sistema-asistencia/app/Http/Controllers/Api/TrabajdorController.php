@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TrabajadoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Trabajador;
-use Illuminate\Http\show;
-use Illuminate\Http\index;
-use Illuminate\Http\store;
-use Illuminate\Http\update;
-use Illuminate\Http\destroy;
 
 class TrabajdorController extends Controller
 {
@@ -25,9 +21,10 @@ class TrabajdorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store( $request)
+    public function store(TrabajadoreRequest $request)
     {
-
+        $trabajador = Trabajador::create($request->all());
+        return response()->json(['message' => 'Trabajador creado con exito', 'data' => $trabajador], 201);
     }
 
     /**

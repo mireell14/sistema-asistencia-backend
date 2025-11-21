@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\GradoRequest;
 use App\Models\Grado;
 
 class GradoController extends Controller
@@ -14,9 +14,9 @@ class GradoController extends Controller
         return response()->json($grados);
     }
 
-    public function store(Request $request)
+    public function store(GradoRequest $request)
     {
-        $grado = Grado::create($request->all());
+        $grado = Grado::create($request->validated());
         return response()->json([
             'msg' => 'Registrado',
             'data' => $grado
@@ -25,20 +25,26 @@ class GradoController extends Controller
 
     public function show($id)
     {
-        return Grado::findOrFail($id);
+        $grado = Grado::findOrFail($id);
+        return response()->json($grado);
     }
 
-    public function update(Request $request, $id)
+    public function update(GradoRequest $request, string $id)
     {
         $grado = Grado::findOrFail($id);
-        $grado->update($request->all());
-        return response()->json(['msg' => 'Actualizado', 'data' => $grado]);
+        $grado->update($request->validated());
+        return response()->json([
+            'msg' => 'Actualizado',
+            'data' => $grado
+        ]);
     }
+
 
     public function destroy($id)
     {
         $grado = Grado::findOrFail($id);
         $grado->delete();
+
         return response()->json(['msg' => 'Eliminado']);
     }
 }

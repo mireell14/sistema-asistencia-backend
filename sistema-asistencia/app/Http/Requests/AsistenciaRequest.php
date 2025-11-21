@@ -30,7 +30,6 @@ class AsistenciaRequest extends FormRequest
             'hora_salida'    => 'nullable|date_format:H:i:s',
             'estado'         => 'required|string|max:20',
             'observacion'    => 'nullable|string|max:150',
-
         ];
     }
 }

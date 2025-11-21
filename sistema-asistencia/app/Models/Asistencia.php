@@ -21,6 +21,7 @@ class Asistencia extends Model
         'hora_salida',
         'estado',
         'observacion'
+
     ];
 
     // Relación con estudiantes
