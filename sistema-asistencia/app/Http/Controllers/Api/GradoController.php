@@ -40,11 +40,23 @@ class GradoController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $grado = Grado::findOrFail($id);
+        $grado = Grado::find($id);
+
+        if (!$grado) {
+            return response()->json(['message' => 'Grado no encontrado'], 404);
+        }
+
+        // ELIMINAR SECCIONES RELACIONADAS
+        $grado->secciones()->delete();
+
+        // AHORA ELIMINAR EL GRADO
         $grado->delete();
 
-        return response()->json(['msg' => 'Eliminado']);
+        return response()->json(['message' => 'Grado eliminado con éxito']);
     }
+
+    
 }
+ 

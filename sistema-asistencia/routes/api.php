@@ -23,3 +23,4 @@ Route::apiResource('seccions',SeccionController::class);
 Route::apiResource('trabajadores', TrabajdorController::class);
 Route::apiResource('tipo_trabajadors', TipoTrabajadorController::class);
 Route::apiResource('grados', GradoController::class);
+

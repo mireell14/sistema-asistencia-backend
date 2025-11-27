@@ -22,10 +22,8 @@ return new class extends Migration
 
             $table->unsignedInteger('id_tipo');
             $table->foreign('id_tipo')
-                  ->references('id_tipo')
-                  ->on('tipo_trabajadores')
-                  ->cascadeOnUpdate()
-                  ->restrictOnDelete();
+            ->references('id_tipo')->on('tipo_trabajadores')
+            ->onDelete('cascade');
 
             $table->timestamps();
         });

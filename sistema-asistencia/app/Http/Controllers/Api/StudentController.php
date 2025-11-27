@@ -32,7 +32,11 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student = Student::find($id);
+        if (!$student) {
+            return response()->json(['message' => 'Student no encontrado'], 404);
+        }
+        return response()->json($student);
     }
 
     /**
@@ -49,6 +53,11 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = Student::find($id);
+        if ($student) {
+            $student->delete();
+            return response()->json(['message' => 'Student eliminado con exito']);;
+           }
+           return response()->json(['message' => 'Student no encontrado'], 404);
     }
 }

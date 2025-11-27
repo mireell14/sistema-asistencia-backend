@@ -9,7 +9,10 @@ class Trabajador extends Model
 {
     use HasFactory;
 
-    protected $table = 'trabajadores'; // ← SOLUCIÓN PRINCIPAL
+    protected $table = 'trabajadores';
+    protected $primaryKey = 'id_trabajador';   // ← IMPORTANTE
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'dni',
@@ -23,6 +26,6 @@ class Trabajador extends Model
 
     public function tipo_trabajador()
     {
-        return $this->belongsTo(TipoTrabajador::class, 'id_tipo'); // ← CORREGIDO
+         return $this->belongsTo(TipoTrabajador::class, 'id_tipo');
     }
 }

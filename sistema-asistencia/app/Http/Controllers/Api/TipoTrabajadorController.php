@@ -46,13 +46,21 @@ class TipoTrabajadorController extends Controller
         return response()->json(['msg' => 'Actualizado', 'data' => $TipoTrabajador]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $TipoTrabajador=TipoTrabajador::findOrFail($id);
-        $TipoTrabajador->delete();
-        return response()->json(['msg' => 'Eliminado']);
+    public function destroy($id)
+{
+    $tipo = TipoTrabajador::find($id);
+
+    if (!$tipo) {
+        return response()->json(['message' => 'Tipo no encontrado'], 404);
     }
+
+    // ELIMINAR TRABAJADORES RELACIONADOS
+    $tipo->trabajadores()->delete();
+
+    // AHORA ELIMINAR EL TIPO
+    $tipo->delete();
+
+    return response()->json(['message' => 'Tipo eliminado con éxito']);
 }
+ }
+    

@@ -39,20 +39,16 @@ class TrabajdorController extends Controller
         return response()->json($trabajador);
     }
 
+
+        public function update(TrabajadoreRequest $request, string $id)
+    {
+        $Seccion=Trabajador::findOrFail($id);
+        $Seccion->update($request->all());
+        return response()->json(['msg' => 'Actualizado', 'data' => $Seccion]);
+    }
+
     /**
      * Update the specified resource in storage.
-     */
-    public function update($request, string $id)
-    {
-        $trabajador = Trabajador::find($id);
-        if ($trabajador) {
-            return response()->json(['message' => 'Trabajador no encontrado'], 404);
-
-    }
-    }
-
-    /**
-     * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
